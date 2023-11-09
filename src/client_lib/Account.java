@@ -3,6 +3,7 @@ package client_lib;
 import java.util.ArrayList;
 
 public class Account {
+  private int nextUniqueID = 0;
   private int ID;
   private double balance;
   private Client client;
@@ -10,28 +11,16 @@ public class Account {
 
   public Account(Client client) {
     balance = 0;
-    ID = -1;
+    ID = nextUniqueID;
+    nextUniqueID++;
     this.client = client;
     Transactions = new ArrayList<Transaction>();
   }
 
   public Account(double balance, Client client) {
     this.balance = balance;
-    ID = -1;
-    this.client = client;
-    Transactions = new ArrayList<Transaction>();
-  }
-
-  public Account(int ID, Client client) {
-    this.ID = ID;
-    balance = 0;
-    this.client = client;
-    Transactions = new ArrayList<Transaction>();
-  }
-
-  public Account(int ID, double balance, Client client) {
-    this.ID = ID;
-    this.balance = balance;
+    ID = nextUniqueID;
+    nextUniqueID++;
     this.client = client;
     Transactions = new ArrayList<Transaction>();
   }
@@ -61,32 +50,32 @@ public class Account {
 
   public void inputNewTransactionFromConsole(Account alterAccount) {
     String message = "Enter the amount you wish to transfer from " + getClientName() +
-      " account number " + String.valueOf(getID()) + " to " + alterAccount.getClientName() +
-      " account number " + String.valueOf(alterAccount.getID()) + ": ";
+  " account number " + String.valueOf(getID()) + " to " + alterAccount.getClientName() +
+  " account number " + String.valueOf(alterAccount.getID()) + ": ";
 
-    double transactionMoney;
-    boolean flag;
-    
-    do {
-      flag = false;
-      transactionMoney = Input.inputDouble(message);
-      if (transactionMoney == 0) {
-        System.out.println("The transfer amount cannot be zero");
-        flag = true;
-      }
-      if (transactionMoney > balance) {
-        System.out.println("Insufficient funds in the account");
-        flag = true;
-      }
-    } while (flag);
+double transactionMoney;
+boolean flag;
 
-    makeTransaction(alterAccount, transactionMoney);
-    System.out.println("Operation was successfully completed");
+do {
+  flag = false;
+  transactionMoney = Input.inputDouble(message);
+  if (transactionMoney == 0) {
+    System.out.println("The transfer amount cannot be zero");
+    flag = true;
+  }
+  if (transactionMoney > balance) {
+    System.out.println("Insufficient funds in the account");
+    flag = true;
+  }
+} while (flag);
+
+makeTransaction(alterAccount, transactionMoney);
+System.out.println("Operation was successfully completed");
   }
 
   public void showInConsole() {
     String info = "Client: " + getClientName() + " num: " + String.valueOf(getID()) +
-      " balance: " + String.valueOf(getBalance());
+  " balance: " + String.valueOf(getBalance());
     System.out.println(info);
   }
 

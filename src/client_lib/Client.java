@@ -87,7 +87,7 @@ public class Client {
 
     // разумное использование оператора this
     public void addNewAccount(double money) {
-        Account newAccount = new Account(Accounts.size(), money, this);
+        Account newAccount = new Account(money, this);
         this.Accounts.add(newAccount);
     }
 
