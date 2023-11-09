@@ -4,6 +4,22 @@ public class test {
   public static void main(String[] args) {
     System.out.println("Class Tests:");
 
+    // обработка массива строк
+    System.out.println("String array processing: ");
+    String[] strArr = new String[5];
+    
+    String str = "a";
+    for(int i = 0; i < 5; i++){
+    	strArr[i] = str;
+    	str = str + str;
+    	System.out.println(strArr[i]);
+    }
+    
+    for(int i = 0; i < 5; i++){
+    	strArr[i] = strArr[i] + "B";
+    	System.out.println(strArr[i]);
+    }
+    
     int test = 0;
 
     Client cli = new Client("Igor", 23, "234234");
