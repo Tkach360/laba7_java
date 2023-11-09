@@ -29,6 +29,48 @@ public class Credit extends BankService {
     public double getMaxCreditAmout(){
     	return this.maxCreditAmout;
     }
+    
+    static double getRegularContribution(int years, double body, double percent) {
+
+		double clean_percent = percent - 1.0;
+
+		double contrib = body * (clean_percent + (clean_percent / (Math.pow(clean_percent + 1.0, (double) years) - 1)));
+		return contrib;
+	}
+    
+ // статический метод проверки кредита через Credit
+ 	static boolean checkCredit(Credit credit) {
+ 		if (!(credit.getYears() > 0 && credit.getBody() > credit.getContrib() && credit.getPercent() > 1)) return false;
+ 		if (credit.getBody() * (credit.getPercent() - 1) > credit.getContrib()) return false;
+ 		if (credit.getBody() > maxCreditAmout) return false;
+
+ 		int TrueYears = 0;
+ 		double body = credit.getBody();
+ 		for (TrueYears = 0; body > 0; TrueYears++) {
+ 			body = body * credit.getPercent();
+ 			body -= credit.getContrib();
+ 		}
+ 		if (TrueYears != credit.getYears()) return false;
+
+ 		return true;
+ 	}  
+
+ 	// статический метод проверки кредита через параметры
+ 	static boolean checkCredit(int years, double body, double percent, double contribution) {
+ 		if (!(years > 0 && body > contribution && percent > 1)) return false;
+ 		if (body * (percent - 1.0) > contribution) return false;
+ 		if (body > maxCreditAmout) return false;
+
+ 		int TrueYears = 0;
+ 		double body_credit = body;
+ 		for (TrueYears = 0; body_credit > 0; TrueYears++) {
+ 			body_credit = body_credit * percent;
+ 			body_credit -= contribution;
+ 		}
+ 		if (TrueYears != years) return false;
+
+ 		return true;
+ 	}
 
     public void setContrib(double newContrib) {
         contrib = newContrib;
@@ -62,53 +104,5 @@ public class Credit extends BankService {
                 + " percent: " + Double.toString(this.getPercent()) + " contribution: "
                 + Double.toString(this.getContrib());
         System.out.println(Info);
-    }
-
-    public boolean checkThisCredit() {
-        if (!(this.getYears() > 0 && this.getBody() > this.getContrib() && this.getPercent() > 1))
-            return false;
-        if (this.getBody() * (this.getPercent() - 1) >= this.getContrib())
-            return false;
-
-        int trueYears = 0;
-        double Body = this.getBody();
-        for (trueYears = 0; Body > 0; trueYears++)
-            Body -= Body * this.getPercent();
-        if (trueYears != this.getYears())
-            return false;
-
-        return true;
-    }
-
-    public static boolean checkCredit(Credit credit) {
-        if (!(credit.getYears() > 0 && credit.getBody() > credit.getContrib() && credit.getPercent() > 1))
-            return false;
-        if (credit.getBody() * (credit.getPercent() - 1) >= credit.getContrib())
-            return false;
-
-        int trueYears = 0;
-        double Body = credit.getBody();
-        for (trueYears = 0; Body > 0; trueYears++)
-            Body -= Body * credit.getPercent();
-        if (trueYears != credit.getYears())
-            return false;
-
-        return true;
-    }
-
-    public static boolean checkCredit(int years, double body, double percent, double contribution) {
-        if (!(years > 0 && body > contribution && percent > 1))
-            return false;
-        if (body * (percent - 1) >= contribution)
-            return false;
-
-        int trueYears = 0;
-        double Body = body;
-        for (trueYears = 0; Body > 0; trueYears++)
-            Body -= Body * percent;
-        if (trueYears != years)
-            return false;
-
-        return true;
     }
 }
