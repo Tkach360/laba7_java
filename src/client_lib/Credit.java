@@ -1,6 +1,8 @@
 package client_lib;
 
 public class Credit extends BankService {
+	private static double maxCreditAmout = 0;
+	
     private double contrib;
 
     public Credit() {
@@ -18,6 +20,14 @@ public class Credit extends BankService {
     public Credit(int Years, double Percent, double Body, double contrib) {
         super(Years, Percent, Body);
         this.contrib = contrib;
+    }
+    
+    public void setMaxCreditAmout(double newCreditAmout){
+    	this.maxCreditAmout = newCreditAmout;
+    }
+    
+    public double getMaxCreditAmout(){
+    	return this.maxCreditAmout;
     }
 
     public void setContrib(double newContrib) {
