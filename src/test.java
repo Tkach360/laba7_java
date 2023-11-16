@@ -62,28 +62,29 @@ public class test {
     cli_d.showInConsole();
     cli_d.Accounts.get(0).makeTransaction(cli.Accounts.get(1), 100);
     cli_d.addNewCredit(5, 1.05, 10000, 1000);
-
-    // работа с массивом объектов
-    System.out.println("\n" + (++test) + ") Test of a dynamic array of class objects");
-    Client[] cli_arr = new Client[3];
-    cli_arr[0] = new Client("Grigory");
-    cli_arr[1] = new Client("Victor");
-    cli_arr[2] = new Client("Gennadiy");
+    
+    // работа с одномерным массивом объектов
+    System.out.println("\n" + (++test) + ") One-dimensional array test");
+    Client[] mass1_cli = new Client[3];
     for (int i = 0; i < 3; i++) 
-      System.out.println(cli_arr[i].getName());
+    	mass1_cli[i] = new Client();
+    mass1_cli[0].setName("Svjatoslav");
+	mass1_cli[1].setName("Tihomir");
+	mass1_cli[2].setName("Dobrinja");
+	for (int i = 0; i < 3; i++) 
+		System.out.println(mass1_cli[i].getName());
+	
+	// работа с двумерным массивом объектов
+    System.out.println("\n" + (++test) + ") Two-dimensional array test");
+    Client[][] mass2_cli = new Client[2][2];
+    for(int i=0;i<2;i++)
+		for (int j = 0; j < 2; j++) {
+			mass2_cli[i][j] = new Client();
+			mass2_cli[i][j].setName("Client[" + Integer.toString(i) + "][" + Integer.toString(j) + "]");
+			System.out.println(mass2_cli[i][j].getName());
+		}
 
-    System.out.println("\n" + (++test) + ") Test of an array of dynamic class objects");
-    Client[] cli_d_arr = new Client[3];
-    cli_d_arr[0] = new Client("Guts");
-    cli_d_arr[1] = new Client("Griffits");
-    cli_d_arr[2] = new Client("Stepan");
-    for (int i = 0; i < 3; i++)
-      System.out.println(cli_d_arr[i].getName());
-
-    for (int i = 0; i < 3; i++)
-      cli_d_arr[i] = null;
-
-    /*System.out.println("\n" + (++test) + ") Test InputClientFromConsole");
+    System.out.println("\n" + (++test) + ") Test InputClientFromConsole");
     Client cli_c = new Client();
     cli_c.inputClientFromConsole();
     cli_c.showInConsole();
@@ -102,6 +103,6 @@ public class test {
 
     System.out.println("\n" + (++test) + ") Test InputNewTransactionFromConsole");
     cli_c.Accounts.get(0).inputNewTransactionFromConsole(cli.Accounts.get(0));
-    cli_c.Accounts.get(0).showAllTransactionInConsole();*/
+    cli_c.Accounts.get(0).showAllTransactionInConsole();
   }
 }
