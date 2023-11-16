@@ -8,6 +8,12 @@ public class Client {
     private int age;
     private String name;
     private String phoneNumber;
+    
+    // использование блока инициализации исключения throw
+    private void checkNewCredit(int years, double percent, double body, double contrib){
+    	if(!Credit.isVerifyCredit(years, body, percent, contrib))
+    		throw new IllegalArgumentException("Incorrect credit details.");
+    }
 
     public ArrayList<Credit> Credits;
     public ArrayList<Deposit> Deposits;
@@ -98,13 +104,25 @@ public class Client {
         System.out.println("Account created successfully");
     }
 
-    public void addNewCredit(int year, double percent, double body, double contrib) {
-        Credit newCredit = new Credit(year, percent, body, contrib);
-        this.Credits.add(newCredit);
+    public void addNewCredit(int years, double percent, double body, double contrib) {
+    	try{
+    		checkNewCredit(years, percent, body, contrib);
+    		Credit newCredit = new Credit(years, percent, body, contrib);
+    		this.Credits.add(newCredit);
+    	}
+    	catch(IllegalArgumentException e){
+    		System.out.println(e.getMessage());
+    	}
     }
 
     public void addNewCredit(Credit newCredit) {
-        this.Credits.add(newCredit);
+    	try{
+    		checkNewCredit(newCredit.getYears(), newCredit.getPercent(), newCredit.getBody(), newCredit.getContrib());
+    		this.Credits.add(newCredit);
+    	}
+    	catch(IllegalArgumentException e){
+    		System.out.println(e.getMessage());
+    	}
     }
 
     public void inputNewCreditFromConsole() {

@@ -1,7 +1,7 @@
 package client_lib;
 
 public class Credit extends BankService {
-	private static double maxCreditAmout = 0;
+	private static double maxCreditAmout = 200000;
 	
     private double contrib;
 
@@ -30,16 +30,17 @@ public class Credit extends BankService {
     	return this.maxCreditAmout;
     }
     
-    static double getRegularContribution(int years, double body, double percent) {
+    public static double getRegularContribution(int years, double body, double percent) {
 
 		double clean_percent = percent - 1.0;
 
 		double contrib = body * (clean_percent + (clean_percent / (Math.pow(clean_percent + 1.0, (double) years) - 1)));
+		//contrib += 0.01;
 		return contrib;
 	}
     
  // статический метод проверки кредита через Credit
- 	static boolean checkCredit(Credit credit) {
+ 	public static boolean isVerifyCredit(Credit credit) {
  		if (!(credit.getYears() > 0 && credit.getBody() > credit.getContrib() && credit.getPercent() > 1)) return false;
  		if (credit.getBody() * (credit.getPercent() - 1) > credit.getContrib()) return false;
  		if (credit.getBody() > maxCreditAmout) return false;
@@ -56,7 +57,7 @@ public class Credit extends BankService {
  	}  
 
  	// статический метод проверки кредита через параметры
- 	static boolean checkCredit(int years, double body, double percent, double contribution) {
+ 	public static boolean isVerifyCredit(int years, double body, double percent, double contribution) {
  		if (!(years > 0 && body > contribution && percent > 1)) return false;
  		if (body * (percent - 1.0) > contribution) return false;
  		if (body > maxCreditAmout) return false;
@@ -68,7 +69,7 @@ public class Credit extends BankService {
  			body_credit -= contribution;
  		}
  		if (TrueYears != years) return false;
-
+ 		
  		return true;
  	}
 

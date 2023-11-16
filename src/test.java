@@ -1,10 +1,11 @@
 import client_lib.Client;
+import client_lib.Credit;
 
 public class test {
   public static void main(String[] args) {
     System.out.println("Class Tests:");
 
-    // обработка массива строк
+    /*// обработка массива строк
     System.out.println("String array processing: ");
     String[] strArr = new String[5];
     
@@ -18,7 +19,7 @@ public class test {
     for(int i = 0; i < 5; i++){
     	strArr[i] = strArr[i] + "B";
     	System.out.println(strArr[i]);
-    }
+    }*/
     
     int test = 0;
 
@@ -40,9 +41,12 @@ public class test {
     cli.addNewDeposit(10, 1.08, 100000);
     cli.Deposits.get(0).showInConsole();
 
-    System.out.println("\n" + (++test) + ") Test AddCredit");
-    cli.addNewCredit(10, 1.08, 100000, 9000);
+    System.out.println("\n" + (++test) + ") Test addNewCredit");
+    cli.addNewCredit(10, 1.08, 100000, 14902.95);
     cli.Credits.get(0).showInConsole();
+    
+    System.out.println("\n" + (++test) + ") Exception handling test");
+    cli.addNewCredit(10, 1.08, 100000, 7000);
 
     System.out.println("\n" + (++test) + ") Test ShowAllTransactionsInConsole");
     cli.Accounts.get(0).showAllTransactionInConsole();
@@ -79,7 +83,7 @@ public class test {
     for (int i = 0; i < 3; i++)
       cli_d_arr[i] = null;
 
-    System.out.println("\n" + (++test) + ") Test InputClientFromConsole");
+    /*System.out.println("\n" + (++test) + ") Test InputClientFromConsole");
     Client cli_c = new Client();
     cli_c.inputClientFromConsole();
     cli_c.showInConsole();
@@ -98,6 +102,6 @@ public class test {
 
     System.out.println("\n" + (++test) + ") Test InputNewTransactionFromConsole");
     cli_c.Accounts.get(0).inputNewTransactionFromConsole(cli.Accounts.get(0));
-    cli_c.Accounts.get(0).showAllTransactionInConsole();
+    cli_c.Accounts.get(0).showAllTransactionInConsole();*/
   }
 }
