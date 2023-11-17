@@ -53,6 +53,12 @@ abstract class BankService {
     return this.body;
   }
   
+  protected void setNewData(int years, double percent, double body) {
+		this.setYear(years);
+		this.setPercent(percent);
+		this.setBody(body);
+	}
+  
   public double getInterestAmount() {
 	    double interestAmount = 0;
 	    for (int i = 0; i < this.getYears(); i++) {

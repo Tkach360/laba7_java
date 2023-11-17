@@ -16,6 +16,11 @@ public class Credit extends BankService {
     public Credit(double Body) {
         super(Body);
     }
+    
+    public void setNewData(int years, double percent, double body, double contrib) {
+		BankService:setNewData(years, percent, body);
+		this.setContrib(contrib);
+	}
 
     public double getInterestAmount() {
 		double interestAmount = this.getFinalContributionsPayments() - this.getBody();
