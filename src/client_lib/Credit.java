@@ -110,10 +110,11 @@ public class Credit extends BankService {
         return FinalContributionsPayments;
     }
 
-    public void showInConsole() {
-        String Info = "Credit year: " + Integer.toString(this.getYears()) + " body: " + Double.toString(this.getBody())
+    @Override
+    public String toString(){
+    	String Info = "Credit year: " + Integer.toString(this.getYears()) + " body: " + Double.toString(this.getBody())
                 + " percent: " + Double.toString(this.getPercent()) + " contribution: "
                 + Double.toString(this.getContrib());
-        System.out.println(Info);
+    	return Info;
     }
 }

@@ -33,7 +33,8 @@ public class Transaction {
 		return time;
 	}
 
-	public void showInConsole() {
+	@Override
+	public String toString(){
 		String strTime = time.toString();
 		String strMoney, strAlterClientName, strAlterAccountID;
 
@@ -47,6 +48,6 @@ public class Transaction {
 		}
 
 		strAlterAccountID = Integer.toString(alterAccountID);
-		System.out.println("Time: " + strTime + " " + strMoney + " " + strAlterClientName + " acc. " + strAlterAccountID);
+		return "Time: " + strTime + " " + strMoney + " " + strAlterClientName + " acc. " + strAlterAccountID;
 	}
 };

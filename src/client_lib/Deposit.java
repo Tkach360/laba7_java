@@ -24,9 +24,11 @@ public class Deposit extends BankService {
     }
     return finalDepositAmount;
   }
-  public void showInConsole() {
-    String info = "Deposit year: " + Integer.toString(this.getYears()) + " body: " + Double.toString(this.getBody()) +
-      " percent: " + Double.toString(this.getPercent());
-    System.out.println(info);
+  
+  @Override
+  public String toString(){
+	  String info = "Deposit year: " + Integer.toString(this.getYears()) + " body: " + Double.toString(this.getBody()) +
+		      " percent: " + Double.toString(this.getPercent());
+	  return info;
   }
 }

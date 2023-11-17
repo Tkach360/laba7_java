@@ -25,11 +25,11 @@ public class test {
 
     Client cli = new Client("Igor", 23, "234234");
     System.out.println("\n" + (++test) + ") Test constructor with all parameters");
-    cli.showInConsole();
+    cli.toString();
 
     System.out.println("\n" + (++test) + ") Test AddAccount");
     cli.addNewAccount(10000);
-    cli.Accounts.get(0).showInConsole();
+    cli.Accounts.get(0).toString();
 
     cli.addNewAccount(10000);
     System.out.println("\n" + (++test) + ") Test MakeTransaction");
@@ -39,11 +39,11 @@ public class test {
 
     System.out.println("\n" + (++test) + ") Test AddDeposit");
     cli.addNewDeposit(10, 1.08, 100000);
-    cli.Deposits.get(0).showInConsole();
+    cli.Deposits.get(0).toString();
 
     System.out.println("\n" + (++test) + ") Test addNewCredit");
     cli.addNewCredit(10, 1.08, 100000, 14902.95);
-    cli.Credits.get(0).showInConsole();
+    cli.Credits.get(0).toString();
     
     System.out.println("\n" + (++test) + ") Exception handling test");
     cli.addNewCredit(10, 1.08, 100000, 7000);
@@ -59,7 +59,7 @@ public class test {
 
     System.out.println("\n" + (++test) + ") Test dynamic");
     Client cli_d = cli;
-    cli_d.showInConsole();
+    cli_d.toString();
     cli_d.Accounts.get(0).makeTransaction(cli.Accounts.get(1), 100);
     cli_d.addNewCredit(5, 1.05, 10000, 1000);
     
@@ -87,19 +87,19 @@ public class test {
     System.out.println("\n" + (++test) + ") Test InputClientFromConsole");
     Client cli_c = new Client();
     cli_c.inputClientFromConsole();
-    cli_c.showInConsole();
+    cli_c.toString();
 
     System.out.println("\n" + (++test) + ") Test InputNewAccountFromConsole");
     cli_c.inputNewAccountFromConsole();
-    cli_c.Accounts.get(0).showInConsole();
+    cli_c.Accounts.get(0).toString();
 
     System.out.println("\n" + (++test) + ") Test InputNewCreditFromConsole");
     cli_c.inputNewCreditFromConsole();
-    cli_c.Credits.get(0).showInConsole();
+    cli_c.Credits.get(0).toString();
 
     System.out.println("\n" + (++test) + ") Test InputNewDepositFromConsole");
     cli_c.inputNewDepositFromConsole();
-    cli_c.Deposits.get(0).showInConsole();
+    cli_c.Deposits.get(0).toString();
 
     System.out.println("\n" + (++test) + ") Test InputNewTransactionFromConsole");
     cli_c.Accounts.get(0).inputNewTransactionFromConsole(cli.Accounts.get(0));

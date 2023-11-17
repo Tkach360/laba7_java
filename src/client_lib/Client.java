@@ -179,13 +179,15 @@ public class Client {
         return allTransactions;
     }
 
-    public void showInConsole() {
-        System.out.println("Name: " + this.name + " Age: " + this.age + " Phone number: " +
-            this.phoneNumber);
-        System.out.println("  Accounts: " + this.Accounts.size() + " Credits: " +
-            this.Credits.size() + " Deposits: " + this.Deposits.size());
+    @Override
+    public String toString(){
+    	String cliInfo = "Name: " + this.name + " Age: " + Integer.toString(this.age) + " Phone number: " + this.phoneNumber + "\n";
+    	String Info = "  Accounts: " + Integer.toString(this.Accounts.size()) + " Credits: " + 
+    			Integer.toString(this.Credits.size()) + " Deposits: " + 
+    			Integer.toString(this.Deposits.size());
+    	return cliInfo + Info;
     }
-
+    
     public ArrayList<Account> getAllAccounts() {
         return this.Accounts;
     }

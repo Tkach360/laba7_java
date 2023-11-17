@@ -73,16 +73,18 @@ makeTransaction(alterAccount, transactionMoney);
 System.out.println("Operation was successfully completed");
   }
 
-  public void showInConsole() {
-    String info = "Client: " + getClientName() + " num: " + String.valueOf(getID()) +
-  " balance: " + String.valueOf(getBalance());
-    System.out.println(info);
+  
+  @Override
+  public String toString(){
+	  String info = "Client: " + getClientName() + " num: " + String.valueOf(getID()) +
+			  " balance: " + String.valueOf(getBalance());
+	  return info;
   }
 
   public void showAllTransactionInConsole() {
     System.out.println("All transaction:");
     for (Transaction transaction : Transactions)
-      transaction.showInConsole();
+      transaction.toString();
   }
 
   public ArrayList<Transaction> getAllTransactions(){
