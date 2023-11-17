@@ -36,6 +36,7 @@ public class Account implements IAccount{
   public String getClientName() {
     return this.client.getName();
   }
+  
 
   public void makeTransaction(Account alterAccount, double transactionMoney) {
     balance -= transactionMoney;

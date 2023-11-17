@@ -2,7 +2,7 @@ package client_lib;
 
 import client_lib.BankService;
 
-public class Deposit extends BankService {
+public class Deposit extends BankService implements Cloneable {
   public Deposit() {
     super();
   }
@@ -15,7 +15,17 @@ public class Deposit extends BankService {
   public Deposit(int Years, double Percent, double Body) {
     super(Years, Percent, Body);
   }
-
+  
+  @Override
+  public Deposit clone(){
+	  try {
+          return (Deposit) super.clone();
+      } catch (CloneNotSupportedException e) {
+          e.printStackTrace();
+          return null;
+      }
+  }
+  
   public double getFinalDepositAmount() {
     double finalDepositAmount = getBody();
     int years = getYears();
