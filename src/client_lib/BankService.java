@@ -52,4 +52,12 @@ abstract class BankService {
   public double getBody() {
     return this.body;
   }
+  
+  public double getInterestAmount() {
+	    double interestAmount = 0;
+	    for (int i = 0; i < this.getYears(); i++) {
+	        interestAmount += this.getBody() * (this.getPercent() - 1);
+	    }
+	    return interestAmount;
+	}
 }
