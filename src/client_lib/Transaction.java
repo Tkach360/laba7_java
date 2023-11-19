@@ -2,19 +2,19 @@ package client_lib;
 
 import java.util.Date;
 
-public class Transaction {
+public class Transaction<T, V> {
 	private boolean sent;
 	private double money;
 	private String alterClientName;
-	private int alterAccountID;
-	private Date time;
+	private V alterAccountID;
+	private T time;
 
-	Transaction(String alterClientName, int alterAccountID, double money, boolean sent) {
+	Transaction(String alterClientName, V alterAccountID, double money, boolean sent) {
 		this.sent = sent;
 		this.alterAccountID = alterAccountID;
 		this.alterClientName = alterClientName;
 		this.money = money;
-		time = new Date();
+		time = (T) new Date();
 	}
 
 	public boolean getSent() {
@@ -26,10 +26,10 @@ public class Transaction {
 	public String getAlterClientName() {
 		return this.alterClientName;
 	}
-	public int getAlterAccountID() {
+	public V getAlterAccountID() {
 		return alterAccountID;
 	}
-	public Date getTime() {
+	public T getTime() {
 		return time;
 	}
 
@@ -47,7 +47,7 @@ public class Transaction {
 			strAlterClientName = "from " + alterClientName;
 		}
 
-		strAlterAccountID = Integer.toString(alterAccountID);
+		strAlterAccountID = String.valueOf(alterAccountID);
 		return "Time: " + strTime + " " + strMoney + " " + strAlterClientName + " acc. " + strAlterAccountID;
 	}
 };
