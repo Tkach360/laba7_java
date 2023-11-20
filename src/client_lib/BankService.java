@@ -1,6 +1,6 @@
 package client_lib;
 
-abstract class BankService {
+abstract class BankService extends AbstractBankService{
   protected int years;
   protected double percent; // in the format 1.XX..
   protected double body;
