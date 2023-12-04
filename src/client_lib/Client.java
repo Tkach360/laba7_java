@@ -67,10 +67,6 @@ public class Client {
         return this.age;
     }
 
-    public Account getAccountByID(int ID) {
-        return Accounts.get(ID);
-    }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -90,7 +86,30 @@ public class Client {
 
         System.out.println("Client successfully registered");
     }
+    
+    
+    public void sortedAccountsByBalance() {
+    	  int size = Accounts.size();
+    	  for (int i = 0; i < size - 1; i++) {
+    	    for (int j = i + 1; j < size; j++) {
+    	      if (Accounts.get(i).getBalance() > Accounts.get(j).getBalance()) {
+    	        Account bufer = Accounts.get(i);
+    	        Accounts.set(i, Accounts.get(j));
+    	        Accounts.set(j, bufer);
+    	      }
+    	    }
+    	  }
+    	}
 
+ // Алгоритм поиска
+    public Account getAccountByID(int searchID) {
+      for (int i = 0; i < Accounts.size(); i++) {
+        if (Accounts.get(i).getID() == searchID)
+          return Accounts.get(i);
+      }
+      return null;
+    }
+    
     // разумное использование оператора this
     public void addNewAccount(double money) {
         Account newAccount = new Account(money, this);

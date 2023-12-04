@@ -3,7 +3,7 @@ package client_lib;
 import java.util.ArrayList;
 
 public class Account implements IAccount{
-  private int nextUniqueID = 0;
+  private static int nextUniqueID = 0;
   private int ID;
   private double balance;
   private Client client;
